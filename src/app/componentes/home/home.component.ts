@@ -110,9 +110,12 @@ export class HomeComponent implements OnInit {
   perucaSelecionada: any;
   realBr: number | null = null;
 
-  //APRESENTAR APENAS 4 PERUCAS NA PAGINA INICIAL
+  //APRESENTAR APENAS 2-2 PERUCAS NA PAGINA INICIAL
   getPerucasPorCategoria(categoria: string) {
-    return this.perucas.filter(peruca => peruca.categoria === categoria).slice(0, 4);
+    return this.perucas.filter(peruca => peruca.categoria === categoria).slice(0, 2);
+  }
+  getPerucasPorCategoriaOne(categoria: string) {
+    return this.perucas.filter(peruca => peruca.categoria === categoria).slice(2, 4);
   }
 
   //SELECIONAR PERUCA POR CARD BY ID (JANELA MODAL)
