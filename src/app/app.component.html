@@ -1,0 +1,33 @@
+<div class="menu">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="">Página Inicial</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="toggleChild(1)" href="#">Perucas</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" aria-disabled="true">Sobre</a>
+    </li>
+  </ul>
+</div><!--menu-->
+
+<div class="navegacao">
+  @if (home) {
+    <app-home />
+  }@else if (perucas) {
+    <app-perucas />
+  }
+</div><!--navegacao-->
+
+
+<footer class="bg-dark text-light py-5">
+  <div class="container">
+  <div class="bg-secondary text-center py-3 mt-4">
+    <p class="mb-0">&copy; 2024 Corporação Adriano. Todos os direitos reservados.</p>
+  </div>
+  </div>
+</footer>
+
+
+<router-outlet />

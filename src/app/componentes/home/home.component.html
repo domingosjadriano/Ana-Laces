@@ -1,0 +1,162 @@
+
+<!--NAVEGAÇÃO-->
+
+<div class="navegacao">
+    @if (cacheada) {
+      <app-cacheada />
+    }@else if (ondulada) {
+      <app-ondulada />
+    }
+    @else if (lisa) {
+        <app-lisa />
+      }
+      @else if (curta) {
+        <app-curta />
+      }
+  </div><!--navegacao-->
+
+@if (inicio) {
+    <div class="main">
+
+        <div class="peruca-cat">
+            <h2>Perucas Cacheadas</h2>
+            <div class="box">
+                @for (peruca of getPerucasPorCategoria('curta'); track peruca) {
+                    <button class="btn-peruca" (click)="escolhaPeruca(peruca.id)">
+                        <div class="card-categoria">
+                            <img src={{peruca.iconUrl}} height="240" loading="lazy" alt="" class="img2">
+                            <div class="info">
+                                <h4>{{peruca.titulo}}</h4>
+                                <p>{{peruca.descricao}}</p>
+                                <div class="preco">
+                                    <h3>
+                                        <span>AOA</span>
+                                        {{peruca.preco}}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                }
+            </div><!--box-->
+            <h4><a (click)="toggleChild(1)" href="#">Ver mais</a></h4>
+        </div><!--peruca-cat-->
+    
+        <div class="peruca-cat">
+            <h2>Perucas Onduladas</h2>
+            <div class="box">
+                @for (peruca of getPerucasPorCategoria('ondulada'); track peruca) {
+                    <button class="btn-peruca" (click)="escolhaPeruca(peruca.id)">
+                        <div class="card-categoria">
+                            <img src={{peruca.iconUrl}} height="240" loading="lazy" alt="" class="img2">
+                            <div class="info">
+                                <h4>{{peruca.titulo}}</h4>
+                                <p>{{peruca.descricao}}</p>
+                                <div class="preco">
+                                    <h3>
+                                        <span>AOA</span>
+                                        {{peruca.preco}}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                }
+            </div><!--box-->
+            <h4><a (click)="toggleChild(2)" href="#">Ver mais</a></h4>
+        </div><!--peruca-cat-->
+    
+        <div class="peruca-cat">
+            <h2>Perucas Lisas</h2>
+            <div class="box">
+                @for (peruca of getPerucasPorCategoria('lisa'); track peruca) {
+                    <button class="btn-peruca" (click)="escolhaPeruca(peruca.id)">
+                        <div class="card-categoria">
+                            <img src={{peruca.iconUrl}} height="240" loading="lazy" alt="" class="img2">
+                            <div class="info">
+                                <h4>{{peruca.titulo}}</h4>
+                                <p>{{peruca.descricao}}</p>
+                                <div class="preco">
+                                    <h3>
+                                        <span>AOA</span>
+                                        {{peruca.preco}}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                }
+        
+            </div><!--box-->
+            <h4><a (click)="toggleChild(3)" href="#">Ver mais</a></h4>
+        </div><!--peruca-cat-->
+    
+        <div class="peruca-cat">
+            <h2>Perucas Curtas</h2>
+            <div class="box">
+                @for (peruca of getPerucasPorCategoria('curta'); track peruca) {
+                    <button class="btn-peruca" (click)="escolhaPeruca(peruca.id)">
+                        <div class="card-categoria">
+                            <img src={{peruca.iconUrl}} height="240" loading="lazy" alt="" class="img2">
+                            <div class="info">
+                                <h4>{{peruca.titulo}}</h4>
+                                <p>{{peruca.descricao}}</p>
+                                <div class="preco">
+                                    <h3>
+                                        <span>AOA</span>
+                                        {{peruca.preco}}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                }
+        
+            </div><!--box-->
+            <h4><a (click)="toggleChild(4)" href="#">Ver mais</a></h4>
+        </div><!--peruca-cat-->
+    
+    </div><!--main-->
+}
+
+<!--CAIXA DE DIALOGO-->
+
+@if (perucaSelecionada) {
+    <p>{{perucaSelecionada.titulo}}</p>
+}
+<div class="modal fade" id="perucaModal" tabindex="-1" aria-labelledby="perucaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="perucaModalLabel">Peruca {{ perucaSelecionada?.titulo }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="descricao">
+                    <div class="imagem">
+                        <img [src]="perucaSelecionada?.iconUrl" class="img-fluid mb-3" alt="{{ perucaSelecionada?.titulo }}">
+                    </div>
+                    <div class="conteudo">
+                        <h5>{{ perucaSelecionada?.descricao }}</h5>
+                        <p><span>AOA</span> {{ perucaSelecionada?.preco }} <i>Kz</i></p>
+                        <p><span>BR</span> {{ realBr }} <i>R$</i></p>
+                        <h4>Estoque Desponível: <strong>{{ perucaSelecionada?.quantidade }}</strong> U</h4>
+                        <button class="btn-comprar">Comprar</button>
+                    </div>
+                </div>
+                <div class="detalhes">
+                    <div class="carateristica">
+                        <h4>Características do Producto</h4>
+                        <p>Marca: <strong>{{ perucaSelecionada?.marca }}</strong></p>
+                        <p>Gênero: <strong>{{ perucaSelecionada?.genero }}</strong></p>
+                        <p>Cor: <strong>Padrão</strong></p>
+                    </div>
+                    <div class="sobre">
+                        <h4>Descrição</h4>
+                        <p>{{ perucaSelecionada?.fullDescricao }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
